@@ -1,3 +1,5 @@
+use reqwest::blocking::get;
+
 struct Scrapper;
 
 fn fetch(url: &str) -> String {
