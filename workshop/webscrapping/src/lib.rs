@@ -1,5 +1,9 @@
 struct Scrapper;
 
+fn fetch(url: &str) -> String {
+    String::new()
+}
+
 impl Scrapper {
     fn new(url: &str) -> Self {
         Scrapper
@@ -24,5 +28,10 @@ mod test {
 
         assert!(scrapper.contains("motherfucking"));
         assert!(scrapper.contains("motherfucking"));
+    }
+
+    #[test]
+    fn fetch_a_website() {
+        let text = fetch("https://motherfuckingwebsite.com/");
     }
 }
