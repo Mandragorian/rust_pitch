@@ -41,4 +41,12 @@ mod test {
         assert_eq!(lines.next(), Some("<html>"));
         assert_eq!(lines.next(), Some("<head>"));
     }
+
+    #[test]
+    fn handle_errors_when_fetching() {
+        let text = match fetch("https://koko.lala") {
+            Ok(_) => panic!("should not fetch non-existent website"),
+            Err(_) => return,
+        };
+    }
 }
