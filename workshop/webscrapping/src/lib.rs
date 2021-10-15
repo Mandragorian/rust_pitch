@@ -2,16 +2,16 @@ use reqwest::blocking::get;
 
 struct Scrapper;
 
-fn fetch(url: &str) -> Result<String, ()> {
+fn fetch(url: &str) -> Result<String, &str> {
     let result = get(url);
     let text_result = match result {
         Ok(response) => response.text(),
-        Err(_) => return Err( () ),
+        Err(_) => return Err("fetching website failed"),
     };
 
     match text_result {
         Ok(body) => Ok(body),
-        Err(_) => return Err ( () ),
+        Err(_) => return Err ("fetching website failed"),
     }
 }
 
@@ -55,7 +55,7 @@ mod test {
     fn handle_errors_when_fetching() {
         let text = match fetch("https://koko.lala") {
             Ok(_) => panic!("should not fetch non-existent website"),
-            Err(_) => return,
+            Err(msg) => assert_eq!(msg, "fetching website failed"),
         };
     }
 }
