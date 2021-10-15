@@ -1,3 +1,5 @@
+struct Scrapper;
+
 pub fn run() {
     println!("Hello, world!");
 }
@@ -7,7 +9,7 @@ mod test {
     use super::*;
 
     #[test]
-    fn it_works() {
-        assert_eq!(1, 1);
+    fn basic_api() {
+        let scrapper = Scrapper;
     }
 }
