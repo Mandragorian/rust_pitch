@@ -4,6 +4,10 @@ impl Scrapper {
     fn new(url: &str) -> Self {
         Scrapper
     }
+
+    fn contains(self, word: &str) -> bool {
+        true
+    }
 }
 
 pub fn run() {
@@ -17,5 +21,7 @@ mod test {
     #[test]
     fn basic_api() {
         let scrapper = Scrapper::new("https://motherfuckingwebsite.com/");
+
+        assert!(scrapper.contains("motherfucking"));
     }
 }
