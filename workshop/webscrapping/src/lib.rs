@@ -2,7 +2,7 @@ struct Scrapper;
 
 impl Scrapper {
     fn new(url: &str) -> Self {
-        return Scrapper;
+        Scrapper
     }
 }
 
