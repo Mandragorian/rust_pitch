@@ -3,7 +3,16 @@ use reqwest::blocking::get;
 struct Scrapper;
 
 fn fetch(url: &str) -> Result<String, ()> {
-    Ok(get(url).unwrap().text().unwrap())
+    let result = get(url);
+    let text_result = match result {
+        Ok(response) => response.text(),
+        Err(_) => return Err( () ),
+    };
+
+    match text_result {
+        Ok(body) => Ok(body),
+        Err(_) => return Err ( () ),
+    }
 }
 
 impl Scrapper {
