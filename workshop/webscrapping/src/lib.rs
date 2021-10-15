@@ -5,7 +5,7 @@ impl Scrapper {
         Scrapper
     }
 
-    fn contains(self, word: &str) -> bool {
+    fn contains(&self, word: &str) -> bool {
         true
     }
 }
@@ -22,6 +22,7 @@ mod test {
     fn basic_api() {
         let scrapper = Scrapper::new("https://motherfuckingwebsite.com/");
 
+        assert!(scrapper.contains("motherfucking"));
         assert!(scrapper.contains("motherfucking"));
     }
 }
