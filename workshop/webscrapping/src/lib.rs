@@ -3,7 +3,7 @@ use reqwest::blocking::get;
 struct Scrapper;
 
 fn fetch(url: &str) -> String {
-    String::new()
+    get(url).unwrap().text().unwrap()
 }
 
 impl Scrapper {
@@ -35,5 +35,10 @@ mod test {
     #[test]
     fn fetch_a_website() {
         let text = fetch("https://motherfuckingwebsite.com/");
+        let mut lines = text.lines();
+
+        assert_eq!(lines.next(), Some("<!DOCTYPE html>"));
+        assert_eq!(lines.next(), Some("<html>"));
+        assert_eq!(lines.next(), Some("<head>"));
     }
 }
