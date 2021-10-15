@@ -1,5 +1,11 @@
 struct Scrapper;
 
+impl Scrapper {
+    fn new(url: &str) -> Self {
+        return Scrapper;
+    }
+}
+
 pub fn run() {
     println!("Hello, world!");
 }
@@ -10,6 +16,6 @@ mod test {
 
     #[test]
     fn basic_api() {
-        let scrapper = Scrapper;
+        let scrapper = Scrapper::new("https://motherfuckingwebsite.com/");
     }
 }
