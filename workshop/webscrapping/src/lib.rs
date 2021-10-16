@@ -4,9 +4,14 @@ mod scrapper;
 const WORDS: [&str; 4] = ["hello", "This", "bye", "website"];
 
 pub fn run() {
-    for word in WORDS {
+    let handles = WORDS.iter().map(|word| {
         std::thread::spawn(move || {
             println!("{}", word);
-        });
+        })
+    });
+
+
+    for handle in handles {
+        handle.join().unwrap()
     }
 }
