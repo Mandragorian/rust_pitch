@@ -8,7 +8,7 @@ pub fn run() {
         std::thread::spawn(move || {
             println!("{}", word);
         })
-    });
+    }).collect();
 
 
     for handle in handles {
