@@ -2,5 +2,7 @@ mod fetcher;
 mod scrapper;
 
 pub fn run() {
-    println!("Hello, world!");
+    for word in ["hello", "This", "bye", "website"] {
+        std::thread::spawn();
+    }
 }
