@@ -1,17 +1,17 @@
 use crate::fetcher::fetch;
 
-struct Scrapper {
+pub struct Scrapper {
     url: String,
 }
 
 impl Scrapper {
-    fn new(url: &str) -> Self {
+    pub fn new(url: &str) -> Self {
         Scrapper {
             url: String::from(url),
         }
     }
 
-    fn contains(&self, word: &str) -> bool {
+    pub fn contains(&self, word: &str) -> bool {
         fetch(self.url.as_str()).unwrap().contains(word)
     }
 }
