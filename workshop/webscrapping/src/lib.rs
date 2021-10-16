@@ -1,14 +1,20 @@
 mod fetcher;
 
-struct Scrapper;
+use fetcher::fetch;
+
+struct Scrapper {
+    url: String,
+}
 
 impl Scrapper {
     fn new(url: &str) -> Self {
-        Scrapper
+        Scrapper {
+            url: String::from(url),
+        }
     }
 
     fn contains(&self, word: &str) -> bool {
-        true
+        fetch(self.url.as_str()).unwrap().contains(word)
     }
 }
 
@@ -26,5 +32,13 @@ mod test {
 
         assert!(scrapper.contains("motherfucking"));
         assert!(scrapper.contains("motherfucking"));
+    }
+
+    #[test]
+    fn correctly_checks_for_contains() {
+        let scrapper = Scrapper::new("https://motherfuckingwebsite.com/");
+
+        assert!(scrapper.contains("motherfucking"));
+        assert!(!scrapper.contains("motherfuckig"));
     }
 }
