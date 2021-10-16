@@ -1,17 +1,19 @@
 mod fetcher;
 mod scrapper;
 
+use std::rc::Rc;
+
 const WORDS: [&str; 4] = ["hello", "This", "bye", "website"];
 
 pub fn run() {
-    let v: Vec<&str> = Vec::new();
-    let ref_v = &v;
+    let v: Rc<Vec<&str>> = Rc::new(Vec::new());
 
     let handles: Vec<_> = WORDS.iter().map(|word| {
+        let v_cloned = Rc::clone(&v);
         std::thread::spawn(move || {
             let scrapper = scrapper::Scrapper::new("https://motherfuckingwebsite.com");
             if scrapper.contains(word) {
-                println!("{:?}", ref_v);
+                println!("{:?}", v_cloned);
             }
         })
     }).collect();
